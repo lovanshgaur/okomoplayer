@@ -1,11 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-  var panorama, viewer,video;
-  video = "Jama_Masjid.mp4"
+  let panorama, viewer;
 
-  panorama = new PANOLENS.VideoPanorama(video, {
-    loop: true,
+  panorama = new PANOLENS.VideoPanorama("test.mp4", {
     muted: true,
-    autoplay: false,
+    autoplay: true,
     playsinline: true,
     crossOrigin: "anonymous",
   });
@@ -15,8 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     controlBar: true,
     autoplay: true,
     cameraFov: 75,
-    controlButtons: ["fullscreen","setting","video"],
+    controlButtons: ["fullscreen", "setting", "video"],
   });
   viewer.add(panorama);
-  viewer.mode = 0;
 });

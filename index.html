@@ -19,13 +19,80 @@
         height: 100%;
         overflow: hidden;
       }
+      .fullscreen-btn {
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .fullscreen-btn:hover {
+      background-color: #45a049;
+    }
     </style>
   </head>
 
   <body>
+    <button class="fullscreen-btn" onclick="toggleFullscreen()">Fullscreen</button>
+
     <script src="three.min.js"></script>
     <script src="panolens.min.js"></script>
 
     <script src="script.js"></script>
+    <script>
+ function toggleFullscreen() {
+      var element = document.documentElement; // Fullscreen on the entire page
+
+      // Check if fullscreen is supported
+      if (!document.fullscreenEnabled && !document.webkitFullscreenEnabled && !document.mozFullScreenEnabled && !document.msFullscreenEnabled) {
+        alert("Fullscreen is not supported in your browser.");
+        return; // Stop the function here if fullscreen is not supported
+      }
+
+      // Check if we are currently in fullscreen mode
+      if (!document.fullscreenElement && 
+          !document.webkitFullscreenElement && 
+          !document.mozFullScreenElement && 
+          !document.msFullscreenElement) {
+
+        // Try entering fullscreen mode
+        try {
+          if (element.requestFullscreen) {
+            element.requestFullscreen();
+          } else if (element.webkitRequestFullscreen) {  // Safari (older versions)
+            element.webkitRequestFullscreen();
+          } else if (element.mozRequestFullScreen) {  // Firefox
+            element.mozRequestFullScreen();
+          } else if (element.msRequestFullscreen) {  // IE/Edge
+            element.msRequestFullscreen();
+          } else {
+            throw new Error("Fullscreen request method not available.");
+          }
+        } catch (error) {
+          alert("Error entering fullscreen: " + error.message);
+        }
+      } else {
+        try {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) {  // Safari (older versions)
+            document.webkitExitFullscreen();
+          } else if (document.mozCancelFullScreen) {  // Firefox
+            document.mozCancelFullScreen();
+          } else if (document.msExitFullscreen) {  // IE/Edge
+            document.msExitFullscreen();
+          } else {
+            throw new Error("Fullscreen exit method not available.");
+          }
+        } catch (error) {
+          alert("Error exiting fullscreen: " + error.message);
+        }
+      }
+    }
+  </script>
+    </script>
   </body>
 </html>

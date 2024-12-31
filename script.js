@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     controlBar: true,
     autoplay: true,
     cameraFov: 75,
-    controlButtons: ["fullscreen"],
+    controlButtons: ["fullscreen","setting","video"],
   });
   viewer.add(panorama);
   viewer.mode = 0;
